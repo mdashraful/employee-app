@@ -1,0 +1,48 @@
+.dashboard .card-grid .card {
+  min-height: 120px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.dashboard .card-grid .card .card-body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  line-height: 1;
+  padding: 20px;
+}
+
+.dashboard .card-grid .card .card-body i {
+  font-size: 50px;
+  margin-right: 20px;
+  color: #2E576B;
+}
+
+.dashboard .card-grid .card .card-body .digit {
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.dashboard .card-grid .card hr {
+  margin-bottom: 7px;
+  margin-top: 7px;
+}
+
+.table.striped thead {
+  background-color: #2E576B;
+  color: #fff;
+}
+
+.table.striped tr:nth-child(2n) {
+  background-color: rgba(46, 87, 107, 0.15);
+}
+
+.table.striped th,
+.table.striped td {
+  border: 1px solid rgba(46, 87, 107, 0.15);
+}
+/*# sourceMappingURL=custom.css.map */

@@ -1,0 +1,45 @@
+$primary : #2E576B;
+
+.dashboard {
+    .card-grid {
+        .card {
+            min-height: 120px;
+            display: flex;
+            .card-body {
+                display: flex;
+                align-items: center;
+                line-height: 1;
+                padding: 20px;
+                i {
+                    font-size: 50px;
+                    margin-right: 20px;
+                    color: $primary;
+                }
+                .digit {
+                    font-weight: 700;
+                    font-size: 20px;
+                }
+            }
+            hr {
+                margin-bottom: 7px;
+                margin-top: 7px;
+            }
+        }
+    }
+}
+
+.table.striped {
+    thead {
+        background-color: $primary;
+        color: #fff;
+    }
+
+    tr:nth-child(2n) {
+        background-color: rgba($primary, 0.15);
+    }
+
+    th,
+    td {
+        border: 1px solid rgba($primary, 0.15);
+    }
+}
