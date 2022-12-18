@@ -28,7 +28,6 @@ class StoreCompanyRequest extends FormRequest
             'name' => 'required',
             'description' => 'required',
             'launch_date' => 'required|date',
-            'departments' => 'required',
             'phone' => 'required',
             'email' => 'required|unique:companies,email',
             'address' => 'required',

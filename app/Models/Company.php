@@ -14,19 +14,9 @@ class Company extends Model
         'name',
         'description',
         'launch_date',
-        'departments',
         'phone',
         'email',
         'address',
     ];
 
-    public function setDepartmentsAttribute($value)
-    {
-        $this->attributes['departments'] = json_encode($value); 
-    }
-
-    public function getDepartmentsAttribute($value)
-    {
-        return $this->attributes['departments'] = json_decode($value); 
-    }
 }

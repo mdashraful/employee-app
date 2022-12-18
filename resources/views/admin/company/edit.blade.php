@@ -43,12 +43,6 @@
 
 @push('js') 
     <script> 
-        $(function($){
-            $(document).ready(function(){            
-                @foreach($company->departments as $departments)
-                    $('#department option[value={{$departments}}]').attr('selected', '');
-                @endforeach
-            }); 
-        })(jQuery);
+        
     </script>
 @endpush

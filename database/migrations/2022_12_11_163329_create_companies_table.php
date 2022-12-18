@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->string('description');
             $table->date('launch_date');
-            $table->string('departments');
             $table->string('phone');
             $table->string('email')->unique();
             $table->string('address');

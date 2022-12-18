@@ -30,7 +30,6 @@ class UpdateCompanyRequest extends FormRequest
             'name' => 'required',
             'description' => 'required',
             'launch_date' => 'required|date',
-            'departments' => 'required',
             'phone' => 'required',
             'email' => ['required', 
                 Rule::unique('companies', 'email')->ignore($this->company)],

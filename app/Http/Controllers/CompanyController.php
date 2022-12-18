@@ -28,18 +28,11 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        $departments = Department::pluck('name', 'id');
-        $dataArray = json_decode($departments);
-        
-        if(empty($dataArray)){
-            return redirect()->route('company.create');
-        }else{
-            $company = new Company;
-            return view('admin.company.create', [
-                'company' => $company,
-                'departments' => $departments,
-            ]);
-        }
+        $company = new Company;
+        return view('admin.company.create', [
+            'company' => $company,
+            'departments' => $departments,
+        ]);
     }
 
     /**
@@ -76,13 +69,9 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
-        $departments = Department::pluck('name', 'id');
-
         return view('admin.company.edit', [
             'company' => $company,
-            'departments' => $departments,
-        ]);
-        
+        ]);  
     }
 
     /**

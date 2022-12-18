@@ -31,19 +31,6 @@
 </div>
 
 <div class="form-group col-sm-6 col-md-4 col-xl-3">
-    <label for="">Available Departments</label>
-    <select id="department" name="departments[]" multiple="multiple" class="form-control @error('departments') is-invalid @enderror">
-        <option value="" disabled>Select departments</option>
-        @foreach($departments as $id => $name)
-            <option value="{{ $id }}" >{{ $name }}</option>
-        @endforeach
-    </select>
-    @error('departments')
-        <div class="text-danger">{{ "* ".$message }}</div>
-    @enderror
-</div>
-
-<div class="form-group col-sm-6 col-md-4 col-xl-3">
     <label for="">Phone</label>
     <input type="text" name="phone" value="{{ $company->phone != '' ? $company->phone : old('phone') }}" class="form-control @error('phone') is-invalid @enderror" placeholder="Phone">
     @error('phone')
