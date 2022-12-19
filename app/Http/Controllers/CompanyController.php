@@ -31,7 +31,6 @@ class CompanyController extends Controller
         $company = new Company;
         return view('admin.company.create', [
             'company' => $company,
-            'departments' => $departments,
         ]);
     }
 

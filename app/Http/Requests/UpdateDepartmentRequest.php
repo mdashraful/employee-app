@@ -29,7 +29,7 @@ class UpdateDepartmentRequest extends FormRequest
             'name' => ['required',
                 Rule::unique('designations', 'name')->ignore($this->designation)],
             'description' => 'required',
-            'designations' => 'required',
+            'company_id' => 'required',
         ];
     }
 }

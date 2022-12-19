@@ -27,7 +27,7 @@ class StoreDepartmentRequest extends FormRequest
         return [
             'name' => 'required|unique:departments',
             'description' => 'required',
-            'designations' => 'required',
+            'company_id' => 'required',
         ];
     }
 }

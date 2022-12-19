@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Department;
-use App\Models\Designation;
+use App\Models\Company;
 use App\Http\Requests\StoreDepartmentRequest;
 use App\Http\Requests\UpdateDepartmentRequest;
 
@@ -28,15 +28,15 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        $designations = Designation::pluck('name', 'id');
-        $dataArray = json_decode($designations);
+        $companies = Company::pluck('name', 'id');
+        $dataArray = json_decode($companies);
 
         if(empty($dataArray)){
-            return redirect()->route('designation.create');
+            return redirect()->route('company.create');
         }else{
             $department = new Department;
             return view('admin.department.create', [
-                'designations' => $designations,
+                'companies' => $companies,
                 'department' => $department,
             ]);
         }
@@ -75,12 +75,11 @@ class DepartmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Department $department)
-    {
-        $designations = Designation::pluck('name', 'id');
-        
+    {        
+        $companies = Company::pluck('name', 'id');
         return view('admin.department.edit', [
-            'designations' => $designations,
             'department' => $department,
+            'companies' => $companies,
         ]);
     }
 

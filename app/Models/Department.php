@@ -12,16 +12,11 @@ class Department extends Model
     protected $fillable = [
         "name",
         "description",
-        "designations",
+        "company_id",
     ];
 
-    public function setDesignationsAttribute($value)
+    public function company()
     {
-        $this->attributes['designations'] = json_encode($value); 
-    }
-
-    public function getDesignationsAttribute($value)
-    {
-        return $this->attributes['designations'] = json_decode($value); 
+        return $this->belongsTo(Company::class);
     }
 }

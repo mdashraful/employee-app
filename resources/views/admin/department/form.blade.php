@@ -15,28 +15,24 @@
 </div>
 
 <div class="form-group col-sm-6 col-md-4 col-xl-3">
-    <label for="">Official Available Designations</label>
-    <select id="designation" name="designations[]" multiple="multiple" class="form-control @error('designations') is-invalid @enderror">
-        <option value="" hidden>Select Designations</option>
-        @foreach($designations as $id => $name)
-            <option value="{{ $id }}" {{ (collect(old('designations'))->contains($id)) ? 'selected':'' }}>{{ $name }}</option>
+    <label for="">Companies</label>
+    <select id="company" name="company_id" class="form-control @error('company_id') is-invalid @enderror">
+        <option value="" hidden>Select Company</option>
+        @foreach($companies as $id => $name)
+            <option value="{{ $id }}" @selected(old('company_id') == $id) >{{ $name }}</option>
         @endforeach
     </select>
-    @error('designations')
+    @error('company_id')
         <div class="text-danger">{{ "* ".$message }}</div>
     @enderror
 </div>
 
 @push('js') 
     <script> 
-        $(function($){
-            $(document).ready(function(){   
-                @if($department->id)         
-                    @foreach($department->designations as $designation)
-                        $('#designation option[value={{$designation}}]').attr('selected', '');
-                    @endforeach
-                @endif
-            }); 
+        ;(function($){
+            $(document).ready(function(){
+                $('select[name=company_id]').val("{{$department->company_id}}");
+            });
         })(jQuery);
     </script>
 @endpush

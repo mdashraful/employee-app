@@ -1,8 +1,6 @@
 @extends('admin.layout.master')
 @push('css')
-    <style>
-        
-    </style>
+
 @endpush
 @section('header')
     All Department
@@ -47,7 +45,7 @@
                     <th>SL</th>
                     <th>Department Name</th>
                     <th class="text-center">Description</th>
-                    <th>Officials</th> 
+                    <th>Company</th> 
                     <th class="text-center">Actions</th>                       
                 </tr>
             </thead>
@@ -57,11 +55,7 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $department->name }} </td>
                         <td>{{ $department->description }}</td>
-                        <td>
-                            @foreach($department->designations as $designation)
-                                {{ DB::table('designations')->find($designation)->name }}</br>
-                            @endforeach
-                        </td>
+                        <td>{{ $department->company->name }}</td>
                         <td class="text-center">
                             <button class="btn btn-sm btn-info"><i class="ti-eye"></i> View</button>
                             <a href="{{route('department.edit', $department->id)}}" class="btn btn-sm btn-secondary"><i class="ti-pencil"></i> Edit</a>
