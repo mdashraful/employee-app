@@ -56,7 +56,7 @@
             <option value="{{ $department->id }}">{{ $department->name }}</option>
         @endforeach
         @if(old('department_id'))
-            <option value="old('designation_id')">{{ DB::table('departments')->find(old('department_id'))->name }}</option>
+            <option value="{{old('department_id')}}">{{ DB::table('departments')->find(old('department_id'))->name }}</option>
         @endif
     </select>
     @error('department_id')
@@ -73,7 +73,7 @@
         @if($designation_of_employee)
             <option value="{{ $designation_of_employee->id }}">{{ $designation_of_employee->name }}</option>
         @elseif(old('designation_id'))
-            <option value="old('designation_id')">{{ DB::table('designations')->find(old('designation_id'))->name }}</option>
+            <option value="{{old('designation_id')}}">{{ DB::table('designations')->find(old('designation_id'))->name }}</option>
         @endif
     </select>
     @error('designation_id')

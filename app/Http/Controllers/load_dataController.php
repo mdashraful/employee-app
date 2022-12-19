@@ -30,7 +30,6 @@ class load_dataController extends Controller
                 $str .= "<option value='$id'> $value </option>";
             }
         }
-        
 
         return response()->json($str);
     }

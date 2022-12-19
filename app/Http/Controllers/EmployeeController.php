@@ -157,6 +157,8 @@ class EmployeeController extends Controller
     {
         try {
             $user = User::find($employee->user_id);
+            // dd($employee);
+            // dd($user);
             $employee->delete();
             $user->delete();
             return back()->with('success', 'Employee Deleted Successfully');

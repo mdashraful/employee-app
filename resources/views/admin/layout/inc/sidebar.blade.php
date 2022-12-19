@@ -31,28 +31,7 @@
                       <span class="mm-text ">Dashboard</span>
                   </a>
               </li>
-              <li class="menu-dropdown {{ (Route::is('employee.index', 'employee.create') ? 'active' : ' ') }}">
-                  <a href="#">
-                      <i class="ti-user"></i>
-                      <span>
-                          Employee
-                      </span>
-                      <span class="fa arrow"></span>
-                  </a>
-                  <ul class="sub-menu">
-                      <li class="{{ (Route::is('employee.index') ? 'active' : ' ') }}">
-                          <a href="{{ route('employee.index') }}" >
-                              <i class="fa fa-fw ti-plug"></i> All Employee
-                          </a>
-                      </li>
-                      <li class="{{ (Route::is('employee.create') ? 'active' : ' ') }}">
-                          <a href="{{ route('employee.create') }}">
-                              <i class="ti-new-window"></i> Add Employee
-                          </a>
-                      </li>
-                  </ul>
-              </li>
-
+              
               <li class="menu-dropdown {{ (Route::is('company.index', 'company.create') ? 'active' : ' ') }}">
                   <a href="#">
                       <i class="ti-user"></i>
@@ -89,7 +68,7 @@
                               <i class="fa fa-fw ti-plug"></i> All Departments
                           </a>
                       </li>
-                      <li class="">
+                      <li class="(Route::is('department.create') ? 'active' : ' ')">
                           <a href="{{ route('department.create') }}">
                               <i class="fa fa-fw ti-plug"></i> Add Department
                           </a>
@@ -119,6 +98,28 @@
                   </ul>
               </li>
 
+              <li class="menu-dropdown {{ (Route::is('employee.index', 'employee.create') ? 'active' : ' ') }}">
+                  <a href="#">
+                      <i class="ti-user"></i>
+                      <span>
+                          Employee
+                      </span>
+                      <span class="fa arrow"></span>
+                  </a>
+                  <ul class="sub-menu">
+                      <li class="{{ (Route::is('employee.index') ? 'active' : ' ') }}">
+                          <a href="{{ route('employee.index') }}" >
+                              <i class="fa fa-fw ti-plug"></i> All Employee
+                          </a>
+                      </li>
+                      <li class="{{ (Route::is('employee.create') ? 'active' : ' ') }}">
+                          <a href="{{ route('employee.create') }}">
+                              <i class="ti-new-window"></i> Add Employee
+                          </a>
+                      </li>
+                  </ul>
+              </li>
+              
               <li class="menu-dropdown {{ (Route::is('fiscal_year.index', 'fiscal_year.create') ? 'active' : ' ') }}">
                   <a href="#">
                       <i class="ti-user"></i>
