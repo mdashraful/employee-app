@@ -13,13 +13,14 @@
          </div>
          <div class="navbar-right">
              <ul class="nav navbar-nav">
+                @auth
                  <li class="dropdown user user-menu">
                      <a href="#" class="dropdown-toggle padding-user d-block" data-toggle="dropdown">
                          <img src="{{ asset('admin') }}/img/authors/avatar1.jpg" width="35"
                              class="rounded-circle img-fluid float-left" height="35" alt="User Image">
                          <div class="riot">
                              <div>
-                                 Addison
+                                 {{ Auth::user()->name }}
                                  <span><i class="fa fa-sort-down"></i></span>
                              </div>
                          </div>
@@ -29,7 +30,7 @@
                          <li class="user-header">
                              <img src="{{ asset('admin') }}/img/authors/avatar1.jpg" class="rounded-circle"
                                  alt="User Image">
-                             <p> Addison</p>
+                             <p>{{ Auth::user()->name }}</p>
                          </li>
                          <!-- Menu Body -->
                          <li role="presentation"></li>
@@ -45,7 +46,7 @@
                                  </a>
                              </div>
                              <div class="float-right">
-                                 <a href="login.html">
+                                 <a href="{{ route('logout') }}">
                                      <i class="fa fa-fw ti-shift-right"></i>
                                      Logout
                                  </a>
@@ -53,6 +54,7 @@
                          </li>
                      </ul>
                  </li>
+                 @endauth
              </ul>
          </div>
      </nav>

@@ -52,7 +52,7 @@ class EmployeeController extends Controller
     public function store(StoreEmployeeRequest $request)
     {
         $validated = $request->safe()->only('name', 'email', 'password', 'username', 'role_id');
-
+        $validated['password'] = bcrypt($validated['password']);
         $user = User::create($validated);     
 
         $validated = $request->safe()->except('name', 'email', 'password', 'username', 'role');
@@ -121,7 +121,7 @@ class EmployeeController extends Controller
             "name" => 'required',
             "email" => 'required|email|unique:users,email,' .$employee->user_id,
             'role_id' => 'nullable',
-            'password' => 'required',
+            'password' => 'nullable',
             "company_id" => 'required',
             "department_id" => 'required',
             "designation_id" => 'required',
@@ -132,13 +132,24 @@ class EmployeeController extends Controller
 
         $validated = $validator->safe()->only('name', 'email', 'password', 'username', 'role_id');
         // dd($validated);
+        
         if(! isset($validated['role_id'])){
             $validated['role_id'] = 1;
         }
 
         $user = User::find($employee->user_id); 
+
+        if($request->password != ''){
+            $validated['password'] = bcrypt($validated['password']);
+            $user->update($validated);
+        }else{
+            $user->nama = $validated['name'];
+            $user->email = $validated['email'];
+            $user->username = $validated['username'];
+            $user->role_id = $validated['role_id'];
+        }
+
         
-        $user->update($validated);
 
         $validated = $validator->safe()->except('name', 'email', 'password', 'username', 'role_id');
 
@@ -157,8 +168,6 @@ class EmployeeController extends Controller
     {
         try {
             $user = User::find($employee->user_id);
-            // dd($employee);
-            // dd($user);
             $employee->delete();
             $user->delete();
             return back()->with('success', 'Employee Deleted Successfully');

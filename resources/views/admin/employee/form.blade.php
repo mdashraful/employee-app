@@ -24,7 +24,7 @@
 
 <div class="form-group col-sm-6 col-md-4 col-xl-3">
     <label for="">Password</label>
-    <input type="password" name="password" value="{{ $employee->id != '' ? $employee->user->password : old('password') }}" class="form-control @error('password') is-invalid @enderror" placeholder="Password">
+    <input type="password" name="password" value="{{ old('password') }}" class="form-control @error('password') is-invalid @enderror" placeholder="Password">
     @error('password')
         <div class="text-danger">{{ "* ".$message }}</div>
     @enderror
