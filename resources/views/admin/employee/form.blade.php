@@ -147,18 +147,11 @@
                 $("#company").on('change', function(){
                     var company_id = $("#company").val();
                     if(company_id){
-                        loadOption("department", company_id); 
+                        loadOption("department", company_id);
+                        loadOption("designation", company_id);  
                     }else{
-                        $("#department").empty()
-                    }     
-                });
-
-                $("#department").on('change', function(){
-                    var department_id = $("#department").val();
-                    if(department_id){
-                        loadOption("designation", department_id); 
-                    }else{
-                        $("#designation").empty()
+                        $("#department").empty();
+                        $("#designation").empty();
                     }     
                 });
             });

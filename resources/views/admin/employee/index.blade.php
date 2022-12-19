@@ -49,7 +49,7 @@
                         <th>Department</th>
                         <th>Designation</th>
                         <th>Join Date</th> 
-                        <th>Satatus</th> 
+                        <th>Role</th> 
                         <th class="text-center">Actions</th>                       
                     </tr>
                 </thead>

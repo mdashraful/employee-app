@@ -15,20 +15,19 @@ class load_dataController extends Controller
         $id = $request->id;
 
         if($loadType == "department"){
-            $company = Company::find($id);
-            $department_ids = $company->departments;
-            
+            $departments = Department::where('company_id', $id)->pluck('name', 'id');
+                        
             $str = "";
-            foreach($department_ids as $department_id){
-                $str .= "<option value='$department_id'>".Department::find($department_id)->name."</option>";
+            foreach($departments as $id => $value){
+                $str .= "<option value='$id'> $value </option>";
             }
         }else if($loadType == "designation"){
-            $department = Department::find($id);
-            $designation_ids = $department->designations;
-            
+
+            $designations = Designation::where('company_id', $id)->pluck('name', 'id');
+                        
             $str = "";
-            foreach($designation_ids as $designation_id){
-                $str .= "<option value='$designation_id'>".Designation::find($designation_id)->name."</option>";
+            foreach($designations as $id => $value){
+                $str .= "<option value='$id'> $value </option>";
             }
         }
         
