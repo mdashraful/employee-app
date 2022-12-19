@@ -26,6 +26,7 @@ class StoreDesignationRequest extends FormRequest
         return [
             'name' => 'required|unique:designations',
             'level' => 'required|numeric',
+            'company_id' => 'required',
         ];
     }
 }

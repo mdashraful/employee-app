@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Designation;
+use App\Models\Company;
 use App\Http\Requests\StoreDesignationRequest;
 use App\Http\Requests\UpdateDesignationRequest;
 
@@ -27,8 +28,18 @@ class DesignationController extends Controller
      */
     public function create()
     {
-        $designation = new Designation;
-        return view('admin.designation.create', compact('designation'));
+        $companies = Company::pluck('name', 'id');
+        $dataArray = json_decode($companies);
+
+        if(empty($dataArray)){
+            return redirect()->route('company.create');
+        }else{
+            $designation = new Designation;
+            return view('admin.designation.create', [
+                'companies' => $companies,
+                'designation' => $designation,
+            ]);
+        }
     }
 
     /**
@@ -65,7 +76,12 @@ class DesignationController extends Controller
      */
     public function edit(Designation $designation)
     {
-        return view('admin.designation.edit', compact('designation'));
+        $companies = Company::pluck('name', 'id');
+
+        return view('admin.designation.edit', [
+            'companies' => $companies,
+            'designation' => $designation,
+        ]);
     }
 
     /**
@@ -92,10 +108,11 @@ class DesignationController extends Controller
      */
     public function destroy(Designation $designation)
     {
-        $destroy = $designation->delete(); // Use Eloquent: https://laravel.com/docs/8.x/eloquent
-        if($destroy){
-            return back()->with('success', 'Deleted Successfully');
-        }
-        
+        try {
+            $destroy = $designation->delete();
+            return back()->with('success', 'Designation Deleted Successfully');
+        } catch (\Throwable $e) {
+            return back()->with('error', 'Can Not delete Parent');
+        }   
     }
 }

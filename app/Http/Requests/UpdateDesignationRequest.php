@@ -28,6 +28,7 @@ class UpdateDesignationRequest extends FormRequest
             'name' => ['required',
                 Rule::unique('designations', 'name')->ignore($this->designation)],
             'level' => 'required|numeric',
+            'company_id' => 'required',
         ];
     }
 }
