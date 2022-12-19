@@ -12,6 +12,8 @@
     <link type="text/css" href="{{ asset('admin') }}/css/app.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="{{ asset('admin') }}/css/custom.css">
     <link rel="stylesheet" href="{{ asset('admin') }}/scss/custom.css">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     @stack('css')
     <!-- end of global css -->
     <style>
@@ -56,6 +58,8 @@
     <!-- global js -->
     <script src="{{ asset('admin') }}/js/app.js" type="text/javascript"></script>
     <!-- <script src="https://code.jquery.com/jquery-3.6.1.slim.min.js"></script> -->
+    
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     @stack('js')
     <!-- end of page level js -->
     <script>

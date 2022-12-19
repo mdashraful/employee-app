@@ -13,7 +13,7 @@
 
 <div class="form-group col-sm-6 col-md-4 col-xl-3">
     <label for="">Name</label>
-    <input type="text" name="name" value="{{ $leave_category->name != '' ? $leave_category->name : old('name')}}" class="form-control @error('name') is-invalid @enderror" placeholder="Designation Name">
+    <input type="text" name="name" value="{{ $leave_category->name != '' ? $leave_category->name : old('name')}}" class="form-control @error('name') is-invalid @enderror" placeholder="Leave Name">
     @error('name')
         <div class="text-danger">{{ "* ".$message }}</div>
     @enderror

@@ -32,14 +32,25 @@ class Leave_applicationController extends Controller
     public function create()
     {
         $fiscal_years = Fiscal_year::pluck('name', 'id');
+        $fiscal_yearsArray = json_decode($fiscal_years);
+
         $leave_categories = Leave_category::pluck('name', 'id');
+        $leave_categoriesArray = json_decode($leave_categories);
+
         $leave_application = new Leave_application;
 
-        return view('admin.leave_application.create', [
+        if(empty($fiscal_yearsArray)){
+            return to_route('fiscal_year.create');
+        }else if(empty($leave_categoriesArray)){
+            return to_route('leave_category.create');
+        }else{
+            return view('admin.leave_application.create', [
             'fiscal_years' => $fiscal_years,
             'leave_categories' => $leave_categories,
             'leave_application' => $leave_application,
         ]);
+        }
+        
     }
 
     /**

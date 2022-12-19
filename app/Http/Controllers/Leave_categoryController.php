@@ -28,13 +28,21 @@ class Leave_categoryController extends Controller
      */
     public function create()
     {
-        $leave_category = new Leave_category;
         $fiscal_years = Fiscal_year::pluck('name', 'id');
+        $fiscal_yearsArray = json_decode($fiscal_years);
 
-        return view('admin.leave_category.create', [
-            'leave_category' => $leave_category,
-            'fiscal_years' => $fiscal_years,
-        ]);
+        if(empty($fiscal_yearsArray)){
+            return to_route('fiscal_year.create');
+        }else if(empty($leave_categoriesArray)){
+            return to_route('leave_category.create');
+        }else{
+            $leave_category = new Leave_category;
+
+            return view('admin.leave_category.create', [
+                'leave_category' => $leave_category,
+                'fiscal_years' => $fiscal_years,
+            ]);
+        }
     }
 
     /**

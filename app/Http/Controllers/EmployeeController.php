@@ -34,13 +34,30 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        $employee = new Employee;
-        $companies = Company::all();
+        $companies = Company::pluck('id');
+        $companiesArray = json_decode($companies);
 
-        return view('admin.employee.create', [
-            'employee' => $employee,
-            'companies' => $companies,
-        ]);
+        $departments = Department::pluck('id');
+        $departmentsArray = json_decode($departments);
+
+        $designations = Designation::pluck('id');
+        $designationsArray = json_decode($designations);
+
+        if(empty($companiesArray)){
+            return redirect()->route('company.create');
+        }else if(empty($departmentsArray)){
+            return redirect()->route('department.create');
+        }else if(empty($designationsArray)){
+            return redirect()->route('designation.create');
+        }else{
+            $employee = new Employee;
+            $companies = Company::all();
+
+            return view('admin.employee.create', [
+                'employee' => $employee,
+                'companies' => $companies,
+            ]);
+        }
     }
 
     /**

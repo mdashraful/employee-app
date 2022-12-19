@@ -25,8 +25,8 @@
               </div>
           </div>
           <ul class="navigation">
-              <li class="">
-                  <a href="{{ URL::to('/') }}">
+              <li class="{{ (Route::is('dashboard') ? 'active' : ' ') }}">
+                  <a href="{{ URL::to('/dashboard') }}">
                       <i class="menu-icon ti-desktop"></i>
                       <span class="mm-text ">Dashboard</span>
                   </a>
