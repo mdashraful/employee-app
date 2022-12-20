@@ -24,16 +24,11 @@ use App\Http\Controllers\LogoutController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', [LoginController::class, 'index'])->name('login');
-
-Route::post('/', [LoginController::class, 'store'])->name('login.store');
+Route::view('/', 'welcome');
 
 Route::middleware(['auth'])->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
-    Route::get('/logout', [LogoutController::class, 'store'])->name('logout');
 
     Route::resource('designation', DesignationController::class);
 
@@ -56,3 +51,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/attachement/{id}', [Leave_applicationController::class, 'viewAttachment'])->name('attachment.view');
     
 });
+
+Auth::routes();
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

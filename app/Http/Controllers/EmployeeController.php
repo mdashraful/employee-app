@@ -34,7 +34,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        $companies = Company::pluck('id');
+        $companies = Company::all();
         $companiesArray = json_decode($companies);
 
         $departments = Department::pluck('id');
@@ -51,8 +51,7 @@ class EmployeeController extends Controller
             return redirect()->route('designation.create');
         }else{
             $employee = new Employee;
-            $companies = Company::all();
-
+            
             return view('admin.employee.create', [
                 'employee' => $employee,
                 'companies' => $companies,

@@ -33,8 +33,6 @@ class Leave_categoryController extends Controller
 
         if(empty($fiscal_yearsArray)){
             return to_route('fiscal_year.create');
-        }else if(empty($leave_categoriesArray)){
-            return to_route('leave_category.create');
         }else{
             $leave_category = new Leave_category;
 

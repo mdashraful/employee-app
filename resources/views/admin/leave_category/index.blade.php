@@ -54,7 +54,7 @@
                 @forelse($leave_categories as $leave_categorie)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $leave_categorie->fiscal_year_id }}</td>
+                        <td>{{ $leave_categorie->fiscal_year->name }}</td>
                         <td>{{ $leave_categorie->name }}</td>
                         <td>{{ $leave_categorie->days }}</td>
                         <td class="text-center">

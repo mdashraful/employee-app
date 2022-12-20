@@ -14,4 +14,9 @@ class Leave_category extends Model
         'days',
         'fiscal_year_id',
     ];
+
+    public function fiscal_year()
+    {
+        return $this->belongsTo(Fiscal_year::class);
+    }
 }
