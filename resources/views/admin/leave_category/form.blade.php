@@ -21,8 +21,8 @@
 
 <div class="form-group col-sm-6 col-md-4 col-xl-3">
     <label for="">Number Of Days</label>
-    <input type="number" name="days" value="{{ $leave_category->days != '' ? $leave_category->days : old('days')}}" class="form-control @error('days') is-invalid @enderror" placeholder="Days">
-    @error('days')
+    <input type="number" name="leave_days" value="{{ $leave_category->leave_days != '' ? $leave_category->leave_days : old('leave_days')}}" class="form-control @error('leave_days') is-invalid @enderror" placeholder="Days">
+    @error('leave_days')
         <div class="text-danger">{{ "* ".$message }}</div>
     @enderror
 </div>

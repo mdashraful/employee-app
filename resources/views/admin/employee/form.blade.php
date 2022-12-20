@@ -106,7 +106,7 @@
 </div>
 
 <div class="form-check col-sm-6 col-md-4 col-xl-3 p-5">
-    <input type="checkbox" name="role_id" value="2" class="form-check-input" @checked($employee->id != '' ? old('role_id', $employee->user->role_id == 2) : old('role_id'))>
+    <input type="checkbox" name="role_id" value= "2" class="form-check-input" @checked($employee->id != '' ? old('role_id', $employee->user->role_id == 2) : old('role_id'))>
     <label> Select As Admin</label>
     @error('role_id')
         <div class="text-danger">{{ "* ".$message }}</div>

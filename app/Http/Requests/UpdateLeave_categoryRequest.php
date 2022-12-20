@@ -27,7 +27,7 @@ class UpdateLeave_categoryRequest extends FormRequest
         return [
             'name' => ['required',
                 Rule::unique('leave_categories', 'name')->ignore($this->leave_category)],
-            'days' => 'required',
+            'leave_days' => 'required',
             'fiscal_year_id' => 'required',
         ];
     }

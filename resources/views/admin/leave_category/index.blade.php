@@ -56,7 +56,7 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $leave_categorie->fiscal_year->name }}</td>
                         <td>{{ $leave_categorie->name }}</td>
-                        <td>{{ $leave_categorie->days }}</td>
+                        <td>{{ $leave_categorie->leave_days }}</td>
                         <td class="text-center">
                             <button class="btn btn-sm btn-info"><i class="ti-eye"></i> View</button>
                             <a href="{{ route('leave_category.edit', $leave_categorie->id) }}" class="btn btn-sm btn-secondary"><i class="ti-pencil"></i> Edit</a>

@@ -25,7 +25,7 @@ class StoreLeave_categoryRequest extends FormRequest
     {
         return [
             'name' => 'required|unique:leave_categories',
-            'days' => 'required',
+            'leave_days' => 'required',
             'fiscal_year_id' => 'required',
         ];
     }

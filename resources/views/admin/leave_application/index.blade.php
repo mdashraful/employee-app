@@ -47,8 +47,8 @@
                     <th>Applied By</th>
                     <th>Fiscal Year</th>
                     <th>Leave Type</th>
-                    <th>Start Date</th>
-                    <th>End Date</th>
+                    <th>Leave From</th>
+                    <th>Leave To</th>
                     <th class="text-center">Attachment</th>
                     <th class="text-center">Actions</th>                       
                 </tr>
@@ -59,9 +59,9 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $leave_application->applied_by }}</td>
                         <td>{{ $leave_application->fiscalYear->name }}</td>
-                        <td>{{ $leave_application->leaveType->name }}</td>
-                        <td>{{ $leave_application->start_date }}</td>
-                        <td>{{ $leave_application->end_date }}</td>
+                        <td>{{ $leave_application->leaveCategory->name }}</td>
+                        <td>{{ $leave_application->leave_from }}</td>
+                        <td>{{ $leave_application->leave_to }}</td>
                         <td class="text-center">
                             @if($leave_application->attachment)
                                 <a href="{{ route('attachment.view', $leave_application->id) }}">View</a>

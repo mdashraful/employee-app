@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('leave_categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('days');
+            $table->integer('leave_days');
             $table->foreignId('fiscal_year_id')->constrained();
             $table->timestamps();
         });

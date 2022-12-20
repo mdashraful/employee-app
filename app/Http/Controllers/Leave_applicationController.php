@@ -31,7 +31,7 @@ class Leave_applicationController extends Controller
      */
     public function create()
     {
-        $fiscal_years = Fiscal_year::pluck('name', 'id');
+        $fiscal_years = Fiscal_year::all();
         $fiscal_yearsArray = json_decode($fiscal_years);
 
         $leave_categories = Leave_category::pluck('name', 'id');
@@ -75,7 +75,7 @@ class Leave_applicationController extends Controller
             $file->move($path, $filename);
             $validated['attachment'] = $filename;
         }
-
+        // dd($validated);
         Leave_application::create($validated);
 
         return to_route('leave_application.index')->with('success', 'Leave Application Submitted Successfully!');
@@ -107,7 +107,7 @@ class Leave_applicationController extends Controller
      */
     public function edit(Leave_application $leave_application)
     {
-        $fiscal_years = Fiscal_year::pluck('name', 'id');
+        $fiscal_years = Fiscal_year::all();
         $leave_categories = Leave_category::pluck('name', 'id');
 
         return view('admin.leave_application.edit', [

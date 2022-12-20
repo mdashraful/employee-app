@@ -11,7 +11,7 @@ class Leave_category extends Model
 
     protected $fillable = [
         'name',
-        'days',
+        'leave_days',
         'fiscal_year_id',
     ];
 

@@ -12,9 +12,10 @@ class Leave_application extends Model
     protected $fillable = [
         'applied_by',
         'fiscal_year',
-        'leave_type',
-        'start_date',
-        'end_date',
+        'leave_category',
+        'leave_from',
+        'leave_to',
+        'leave_applied_days',
         'details',
         'attachment',
     ];
@@ -29,8 +30,8 @@ class Leave_application extends Model
         return $this->belongsTo(Fiscal_year::class, 'fiscal_year');
     }
 
-    public function leaveType()
+    public function leaveCategory()
     {
-        return $this->belongsTO(Leave_category::class, 'leave_type');
+        return $this->belongsTO(Leave_category::class, 'leave_category');
     }
 }

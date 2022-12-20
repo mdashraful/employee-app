@@ -2,8 +2,8 @@
     <label for="">Fiscal Year</label>
     <select id="fiscal_year" name="fiscal_year" class="form-control @error('fiscal_year') is-invalid @enderror">
         <option value="" hidden>Select Fiscal Year</option>
-        @foreach($fiscal_years as $id => $name)
-            <option value="{{ $id }}" @selected(($leave_application->fiscal_year != '' ? $leave_application->fiscal_year : old('fiscal_year')) == $id)>{{ $name }}</option>
+        @foreach($fiscal_years as $fiscal_year)
+            <option value="{{ $fiscal_year->id }}" @selected(($leave_application->fiscal_year != '' ? $leave_application->fiscal_year : old('fiscal_year')) == $fiscal_year->id)>{{ $fiscal_year->name }}</option>
         @endforeach
     </select>
     @error('fiscal_year')
@@ -13,29 +13,29 @@
 
 <div class="form-group col-sm-6 col-md-4 col-xl-3">
     <label for="">Leave Type</label>
-    <select id="leave_type" name="leave_type" class="form-control @error('leave_type') is-invalid @enderror">
+    <select id="leave_category" name="leave_category" class="form-control @error('leave_category') is-invalid @enderror">
         <option value="" hidden>Select Leave Category</option>
         @foreach($leave_categories as $id => $name)
-            <option value="{{ $id }}" @selected(($leave_application->leave_type != '' ? $leave_application->leave_type : old('leave_type')) == $id)>{{ $name }}</option>
+            <option value="{{ $id }}" @selected(($leave_application->leave_category != '' ? $leave_application->leave_category : old('leave_category')) == $id)>{{ $name }}</option>
         @endforeach
     </select>
-    @error('leave_type')
+    @error('leave_category')
         <div class="text-danger">{{ "* ".$message }}</div>
     @enderror
 </div>
 
 <div class="form-group col-sm-6 col-md-4 col-xl-3">
-    <label for="">Start Date</label>
-    <input type="date" name="start_date" value="{{ $leave_application->start_date != '' ? $leave_application->start_date : old('start_date') }}" class="form-control @error('start_date') is-invalid @enderror">
-    @error('start_date')
+    <label for="">Leave From</label>
+    <input type="date" id="leave_from" name="leave_from" value="{{ $leave_application->leave_from != '' ? $leave_application->leave_from : old('leave_from') }}" class="form-control @error('leave_from') is-invalid @enderror">
+    @error('leave_from')
         <div class="text-danger">{{ "* ".$message }}</div>
     @enderror
 </div>
 
 <div class="form-group col-sm-6 col-md-4 col-xl-3">
-    <label for="">End Date</label>
-    <input type="date" name="end_date" value="{{ $leave_application->end_date != '' ? $leave_application->end_date : old('end_date') }}" class="form-control @error('end_date') is-invalid @enderror">
-    @error('end_date')
+    <label for="">Leave To</label>
+    <input type="date" id="leave_to" name="leave_to" value="{{ $leave_application->leave_to != '' ? $leave_application->leave_to : old('leave_to') }}" class="form-control @error('leave_to') is-invalid @enderror">
+    @error('leave_to')
         <div class="text-danger">{{ "* ".$message }}</div>
     @enderror
 </div>
@@ -61,4 +61,38 @@
     @enderror
 </div>
 
+<input type="hidden" name="leave_applied_days" id="total_ld">
+
+@push('js')
+    <script>
+        ;(function($){
+            $(document).ready(function(){
+                
+                $("#leave_to").on("change", function(){
+                    var startDate = $("#leave_from").val();
+                    var endDate = $("#leave_to").val();
+
+                    var days = daysdifference(startDate, endDate);  
+                    // Add two dates to two variables 
+                    
+                    $("#total_ld").val(days + 1);
+                }); 
+                    
+                function daysdifference(firstDate, secondDate){  
+                    var startDay = new Date(firstDate);  
+                    var endDay = new Date(secondDate);  
+                
+                    // Determine the time difference between two dates     
+                    var millisBetween = startDay.getTime() - endDay.getTime();  
+                
+                    // Determine the number of days between two dates  
+                    var days = millisBetween / (1000 * 3600 * 24);  
+                
+                    // Show the final number of days between dates     
+                    return Math.round(Math.abs(days));  
+                }
+            });    
+        })(jQuery);
+    </script>
+@endpush
 

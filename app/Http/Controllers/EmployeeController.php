@@ -147,25 +147,25 @@ class EmployeeController extends Controller
         ]);
 
         $validated = $validator->safe()->only('name', 'email', 'password', 'username', 'role_id');
-        // dd($validated);
+        
         
         if(! isset($validated['role_id'])){
-            $validated['role_id'] = 1;
+            $validated['role_id'] = "1";
         }
-
+        
         $user = User::find($employee->user_id); 
-
-        if($request->password != ''){
+        
+        if($request->password != null){
             $validated['password'] = bcrypt($validated['password']);
             $user->update($validated);
         }else{
-            $user->nama = $validated['name'];
+            $user->name = $validated['name'];
             $user->email = $validated['email'];
             $user->username = $validated['username'];
             $user->role_id = $validated['role_id'];
-        }
 
-        
+            $user->save();
+        }
 
         $validated = $validator->safe()->except('name', 'email', 'password', 'username', 'role_id');
 
