@@ -8,7 +8,7 @@
 
 <div class="form-group col-sm-6 col-md-4 col-xl-3">
     <label for="">Start Date</label>
-    <input type="text" id="start_date" name="start_date" placeholder="Start fiscal year" value="{{ $fiscal_year->start_date != '' ? $fiscal_year->start_date : old('start_date') }}" class="form-control @error('start_date') is-invalid @enderror">
+    <input type="text" id="start_date" name="start_date" placeholder="Start fiscal year" value="{{ $fiscal_year->id != '' ? $fiscal_year->start_date : old('start_date') }}" class="form-control @error('start_date') is-invalid @enderror">
     @error('start_date')
         <div class="text-danger">{{ "* ".$message }}</div>
     @enderror
@@ -16,7 +16,7 @@
 
 <div class="form-group col-sm-6 col-md-4 col-xl-3">
     <label for="">End Date</label>
-    <input type="text" id="end_date" name="end_date" placeholder="End fiscal year" value="{{ $fiscal_year->end_date != '' ? $fiscal_year->end_date : old('end_date') }}" class="form-control @error('end_date') is-invalid @enderror">
+    <input type="text" readonly id="end_date" name="end_date" placeholder="End fiscal year" value="{{ $fiscal_year->id != '' ? $fiscal_year->end_date : old('end_date') }}" class="form-control @error('end_date') is-invalid @enderror">
     @error('end_date')
         <div class="text-danger">{{ "* ".$message }}</div>
     @enderror
@@ -26,9 +26,34 @@
     <script>
         ;(function($){
             $(document).ready(function(){
-                $("#start_date").flatpickr();  
-
-                $("#end_date").flatpickr();  
+                $("#start_date").flatpickr({
+                    altInput: true,
+                    altFormat: "d/m/Y",
+                    dateFormat: "Y-m-d",
+                });  
+                $("#start_date").change(function(){
+                    function leapyear(year)
+                    {
+                    return (year % 100 === 0) ? (year % 400 === 0) : (year % 4 === 0);
+                    }
+                    var start_date = $("#start_date").val();
+                    let year =  new Date(start_date).getFullYear();
+                    if(leapyear(year)){
+                        $("#end_date").flatpickr({
+                            altInput: true,
+                            altFormat: "d/m/Y",
+                            dateFormat: "Y-m-d",
+                            defaultDate: new Date(start_date).fp_incr(365),
+                        });
+                    }else{
+                        $("#end_date").flatpickr({
+                            altInput: true,
+                            altFormat: "d/m/Y",
+                            dateFormat: "Y-m-d",
+                            defaultDate: new Date(start_date).fp_incr(364),
+                        });
+                    }    
+                });      
             });
         })(jQuery);    
     </script>

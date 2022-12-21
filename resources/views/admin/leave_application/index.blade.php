@@ -48,6 +48,7 @@
                     <th>Fiscal Year</th>
                     <th>Leave Type</th>
                     <th>Leave From</th>
+                    <th class="text-center">Applied Days</th>
                     <th>Leave To</th>
                     <th class="text-center">Attachment</th>
                     <th class="text-center">Actions</th>                       
@@ -61,6 +62,7 @@
                         <td>{{ $leave_application->fiscalYear->name }}</td>
                         <td>{{ $leave_application->leaveCategory->name }}</td>
                         <td>{{ $leave_application->leave_from }}</td>
+                        <td class="text-center">{{ $leave_application->leave_applied_days }}</td>
                         <td>{{ $leave_application->leave_to }}</td>
                         <td class="text-center">
                             @if($leave_application->attachment)
@@ -80,7 +82,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="8">No Leave Application Found</td>
+                        <td colspan="9">No Leave Application Found</td>
                     <tr>    
                 @endforelse
             </tbody>

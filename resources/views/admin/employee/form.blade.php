@@ -119,10 +119,6 @@
     <script>
         ;(function($){
             $(document).ready(function(){
-                @if(old('department_id'))      
-                    alert(old('department_id'));  
-                    
-                @endif
                 function loadOption(loadType, id){
                     $.ajax({
                         "url" : "{{route('loaddata')}}",

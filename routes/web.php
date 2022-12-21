@@ -49,6 +49,9 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('leave_application', Leave_applicationController::class);
 
     Route::get('/attachement/{id}', [Leave_applicationController::class, 'viewAttachment'])->name('attachment.view');
+
+    Route::post('/loaddate', [Load_dataController::class, 'loadDate'])->name('loaddate');
+
     
 });
 

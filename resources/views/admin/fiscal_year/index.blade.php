@@ -46,7 +46,7 @@
                     <th>SL</th>
                     <th>Name</th>
                     <th>Start Date</th>
-                    <th>Start Date</th>
+                    <th>End Date</th>
                     <th class="text-center">Actions</th>                       
                 </tr>
             </thead>
@@ -56,7 +56,7 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $fiscal_year->name }}</td>
                         <td>{{ $fiscal_year->start_date }}</td>
-                        <td>{{ $fiscal_year->start_date }}</td>
+                        <td>{{ $fiscal_year->end_date }}</td>
                         <td class="text-center">
                             <button class="btn btn-sm btn-info"><i class="ti-eye"></i> View</button>
                             <a href="{{ route('fiscal_year.edit', $fiscal_year->id) }}" class="btn btn-sm btn-secondary"><i class="ti-pencil"></i> Edit</a>
