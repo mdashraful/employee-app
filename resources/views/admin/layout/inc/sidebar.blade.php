@@ -120,7 +120,7 @@
                   </ul>
               </li>
               
-              <li class="menu-dropdown {{ (Route::is('fiscal_year.index', 'fiscal_year.create') ? 'active' : ' ') }}">
+              <li class="menu-dropdown {{ (Route::is('fiscal-year.index', 'fiscal-year.create') ? 'active' : ' ') }}">
                   <a href="#">
                       <i class="ti-user"></i>
                       <span>
@@ -129,19 +129,19 @@
                       <span class="fa arrow"></span>
                   </a>
                   <ul class="sub-menu">
-                      <li class="{{ (Route::is('fiscal_year.index') ? 'active' : ' ') }}">
-                          <a href="{{ route('fiscal_year.index') }}">
+                      <li class="{{ (Route::is('fiscal-year.index') ? 'active' : ' ') }}">
+                          <a href="{{ route('fiscal-year.index') }}">
                               <i class="fa fa-fw ti-plug"></i> All Fiscal Years
                           </a>
                       </li>
-                      <li class="{{ (Route::is('fiscal_year.create') ? 'active' : ' ') }}">
-                          <a href="{{ route('fiscal_year.create') }}">
+                      <li class="{{ (Route::is('fiscal-year.create') ? 'active' : ' ') }}">
+                          <a href="{{ route('fiscal-year.create') }}">
                               <i class=" ti-new-window "></i> Add Fiscal Year
                           </a>
                       </li>
                   </ul>
               </li>
-              <li class="menu-dropdown {{ (Route::is('leave_category.index', 'leave_category.create') ? 'active' : ' ') }}">
+              <li class="menu-dropdown {{ (Route::is('leave-category.index', 'leave-category.create') ? 'active' : ' ') }}">
                   <a href="#">
                       <i class="ti-user"></i>
                       <span>
@@ -150,19 +150,19 @@
                       <span class="fa arrow"></span>
                   </a>
                   <ul class="sub-menu">
-                      <li class="{{ (Route::is('leave_category.index') ? 'active' : ' ') }}">
-                          <a href="{{ route('leave_category.index') }}">
+                      <li class="{{ (Route::is('leave-category.index') ? 'active' : ' ') }}">
+                          <a href="{{ route('leave-category.index') }}">
                               <i class="fa fa-fw ti-plug"></i> All Leave Categorys
                           </a>
                       </li>
-                      <li class="{{ (Route::is('leave_category.create') ? 'active' : ' ') }}">
-                          <a href="{{ route('leave_category.create') }}">
+                      <li class="{{ (Route::is('leave-category.create') ? 'active' : ' ') }}">
+                          <a href="{{ route('leave-category.create') }}">
                               <i class=" ti-new-window "></i> Add Leave Category
                           </a>
                       </li>
                   </ul>    
              </li>
-             <li class="menu-dropdown {{ (Route::is('leave_application.index', 'leave_application.create') ? 'active' : ' ') }}">
+             <li class="menu-dropdown {{ (Route::is('leave-application.index', 'leave-application.create') ? 'active' : ' ') }}">
                   <a href="#">
                       <i class="ti-user"></i>
                       <span>
@@ -171,13 +171,13 @@
                       <span class="fa arrow"></span>
                   </a>
                   <ul class="sub-menu">
-                      <li class="{{ (Route::is('leave_application.index') ? 'active' : ' ') }}">
-                          <a href="{{ route('leave_application.index') }}">
+                      <li class="{{ (Route::is('leave-application.index') ? 'active' : ' ') }}">
+                          <a href="{{ route('leave-application.index') }}">
                               <i class="fa fa-fw ti-plug"></i> All Leave Applications
                           </a>
                       </li>
-                      <li class="{{ (Route::is('leave_application.create') ? 'active' : ' ') }}">
-                          <a href="{{ route('leave_application.create') }}">
+                      <li class="{{ (Route::is('leave-application.create') ? 'active' : ' ') }}">
+                          <a href="{{ route('leave-application.create') }}">
                               <i class=" ti-new-window "></i> Add Leave Application
                           </a>
                       </li>

@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class UpdateLeave_categoryRequest extends FormRequest
+class UpdateFiscalYearRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,9 +26,9 @@ class UpdateLeave_categoryRequest extends FormRequest
     {
         return [
             'name' => ['required',
-                Rule::unique('leave_categories', 'name')->ignore($this->leave_category)],
-            'leave_days' => 'required',
-            'fiscal_year_id' => 'required',
+                Rule::unique('fiscal_years', 'name')->ignore($this->fiscal_year)],
+            'start_date' => 'required|date',
+            'end_date' => 'required|date',
         ];
     }
 }

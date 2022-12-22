@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Leave_category extends Model
+class LeaveCategory extends Model
 {
     use HasFactory;
 
@@ -15,8 +15,8 @@ class Leave_category extends Model
         'fiscal_year_id',
     ];
 
-    public function fiscal_year()
+    public function fiscalYear()
     {
-        return $this->belongsTo(Fiscal_year::class);
+        return $this->belongsTo(FiscalYear::class);
     }
 }

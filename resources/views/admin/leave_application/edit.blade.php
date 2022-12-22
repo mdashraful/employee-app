@@ -26,7 +26,7 @@
             </div>
         </div>
         <div class="card-body">
-            <form action="{{route('leave_application.update', $leave_application->id)}}" method="POST">
+            <form action="{{route('leave-application.update', $leaveApplication->id)}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="row">

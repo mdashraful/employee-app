@@ -5,14 +5,12 @@ use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\EmployeeController;
-use App\Http\Controllers\Fiscal_yearController;
-use App\Http\Controllers\Leave_categoryController;
-use App\Http\Controllers\Leave_applicationController;
+use App\Http\Controllers\FiscalYearController;
+use App\Http\Controllers\LeaveCategoryController;
+use App\Http\Controllers\LeaveApplicationController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\Load_dataController;
-use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\LoadDataController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\LogoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,15 +38,15 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('employee', EmployeeController::class);
 
-    Route::post('/loaddata', [Load_dataController::class, 'loadData'])->name('loaddata');
+    Route::post('/loaddata', [LoadDataController::class, 'loadData'])->name('loaddata');
 
-    Route::resource('fiscal_year', Fiscal_yearController::class);
+    Route::resource('fiscal-year', FiscalYearController::class);
 
-    Route::resource('leave_category', Leave_categoryController::class);
+    Route::resource('leave-category', LeaveCategoryController::class);
 
-    Route::resource('leave_application', Leave_applicationController::class);
+    Route::resource('leave-application', LeaveApplicationController::class);
 
-    Route::get('/attachement/{id}', [Leave_applicationController::class, 'viewAttachment'])->name('attachment.view');
+    Route::get('/attachement/{id}', [LeaveApplicationController::class, 'viewAttachment'])->name('attachment.view');
     
 });
 

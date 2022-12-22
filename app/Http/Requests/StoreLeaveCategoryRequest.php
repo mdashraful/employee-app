@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateLeave_applicationRequest extends FormRequest
+class StoreLeaveCategoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,13 +24,9 @@ class UpdateLeave_applicationRequest extends FormRequest
     public function rules()
     {
         return [
-            'fiscal_year' => 'required',
-            'leave_category' => 'required',
-            'leave_from' => 'required|date',
-            'leave_to' => 'required|date',
-            'leave_applied_days' => 'required',
-            'details' => 'required',
-            'attachment' => 'nullable',
+            'name' => 'required|unique:leave_categories',
+            'leave_days' => 'required',
+            'fiscal_year_id' => 'required',
         ];
     }
 }

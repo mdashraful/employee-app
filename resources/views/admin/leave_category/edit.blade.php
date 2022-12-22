@@ -1,7 +1,7 @@
 @extends('admin.layout.master')
 
 @section('header')
-    Edit :{{ $leave_category->name }}
+    Edit :{{ $leaveCategory->name }}
 @endsection
 
 @section('tagline')
@@ -26,7 +26,7 @@
             </div>
         </div>
         <div class="card-body">
-            <form action="{{route('leave_category.update', $leave_category->id)}}" method="POST">
+            <form action="{{route('leave-category.update', $leaveCategory->id)}}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="row">

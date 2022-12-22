@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="card-body">
-            <form action="{{route('leave_application.store')}}" method="POST" enctype="multipart/form-data">
+            <form action="{{route('leave-application.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     @include('admin.leave_application.form')                    

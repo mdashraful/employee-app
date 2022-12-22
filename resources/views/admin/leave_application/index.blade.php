@@ -55,26 +55,26 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse($leave_applications as $leave_application)
+                @forelse($leaveApplications as $leaveApplication)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $leave_application->applied_by }}</td>
-                        <td>{{ $leave_application->fiscalYear->name }}</td>
-                        <td>{{ $leave_application->leaveCategory->name }}</td>
-                        <td>{{ $leave_application->leave_from }}</td>
-                        <td class="text-center">{{ $leave_application->leave_applied_days }}</td>
-                        <td>{{ $leave_application->leave_to }}</td>
+                        <td>{{ $leaveApplication->applied_by }}</td>
+                        <td>{{ $leaveApplication->fiscalYear->name }}</td>
+                        <td>{{ $leaveApplication->leaveCategory->name }}</td>
+                        <td>{{ $leaveApplication->leave_from }}</td>
+                        <td class="text-center">{{ $leaveApplication->leave_applied_days }}</td>
+                        <td>{{ $leaveApplication->leave_to }}</td>
                         <td class="text-center">
-                            @if($leave_application->attachment)
-                                <a href="{{ route('attachment.view', $leave_application->id) }}">View</a>
+                            @if($leaveApplication->attachment)
+                                <a href="{{ route('attachment.view', $leaveApplication->id) }}">View</a>
                             @endif
                         </td>
                         <td class="text-center">
                             <button class="btn btn-sm btn-info"><i class="ti-eye"></i> View</button>
-                            <a href="{{ route('leave_application.edit', $leave_application->id) }}" class="btn btn-sm btn-secondary"><i class="ti-pencil"></i> Edit</a>
+                            <a href="{{ route('leave-application.edit', $leaveApplication->id) }}" class="btn btn-sm btn-secondary"><i class="ti-pencil"></i> Edit</a>
                             
                             <button class="btn btn-sm btn-danger delete_la"><i class="ti-trash "></i> Delete</button>
-                            <form action="{{ route('leave_application.destroy', $leave_application->id) }}" id="delete_form" method="POST">
+                            <form action="{{ route('leave-application.destroy', $leaveApplication->id) }}" id="delete_form" method="POST">
                                 @method('delete')  
                                 @csrf   
                             </form>

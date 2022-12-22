@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="card-body">
-            <form action="{{route('leave_category.store')}}" method="POST">
+            <form action="{{route('leave-category.store')}}" method="POST">
                 @csrf
                 <div class="row">
                     @include('admin.leave_category.form')                    

@@ -2,8 +2,8 @@
     <label for="">Fiscal Year</label>
     <select id="fiscal_year" name="fiscal_year" class="form-control @error('fiscal_year') is-invalid @enderror">
         <option value="">Select Fiscal Year</option>
-        @foreach($fiscal_years as $fiscal_year)
-            <option start="{{ setFormatedDate($fiscal_year->start_date) }}" end="{{ setFormatedDate($fiscal_year->end_date) }}" value="{{ $fiscal_year->id }}" @selected(($leave_application->fiscal_year != '' ? $leave_application->fiscal_year : old('fiscal_year')) == $fiscal_year->id)>{{ $fiscal_year->name }}</option>
+        @foreach($fiscalYears as $fiscalYear)
+            <option start="{{ setFormatedDate($fiscalYear->start_date) }}" end="{{ setFormatedDate($fiscalYear->end_date) }}" value="{{ $fiscalYear->id }}" @selected(($leaveApplication->fiscal_year != '' ? $leaveApplication->fiscal_year : old('fiscal_year')) == $fiscalYear->id)>{{ $fiscalYear->name }}</option>
         @endforeach
     </select>
     @error('fiscal_year')
@@ -15,8 +15,8 @@
     <label for="">Leave Type</label>
     <select id="leave_category" name="leave_category" class="form-control @error('leave_category') is-invalid @enderror">
         <option value="">Select Leave Category</option>
-        @foreach($leave_categories as $id => $name)
-            <option value="{{ $id }}" @selected(($leave_application->leave_category != '' ? $leave_application->leave_category : old('leave_category')) == $id)>{{ $name }}</option>
+        @foreach($leaveCategories as $id => $name)
+            <option value="{{ $id }}" @selected(($leaveApplication->leave_category != '' ? $leaveApplication->leave_category : old('leave_category')) == $id)>{{ $name }}</option>
         @endforeach
     </select>
     @error('leave_category')
@@ -26,7 +26,7 @@
 
 <div class="form-group col-sm-6 col-md-4 col-xl-3">
     <label for="">Leave From</label>
-    <input type="text" id="leave_from" name="leave_from" value="{{ $leave_application->leave_from != '' ? getFormatedDate($leave_application->leave_from) : old('leave_from') }}" 
+    <input type="text" id="leave_from" name="leave_from" value="{{ $leaveApplication->leave_from != '' ? getFormatedDate($leaveApplication->leave_from) : old('leave_from') }}" 
         class="form-control @error('leave_from') is-invalid @enderror" placeholder="Start Date" autocomplete="off" readonly>
     @error('leave_from')
         <div class="text-danger">{{ "* ".$message }}</div>
@@ -35,7 +35,7 @@
 
 <div class="form-group col-sm-6 col-md-4 col-xl-3">
     <label for="">Leave To</label>
-    <input type="text" id="leave_to" name="leave_to" value="{{ $leave_application->leave_to != '' ? getFormatedDate($leave_application->leave_to) : old('leave_to') }}" 
+    <input type="text" id="leave_to" name="leave_to" value="{{ $leaveApplication->leave_to != '' ? getFormatedDate($leaveApplication->leave_to) : old('leave_to') }}" 
         class="form-control @error('leave_to') is-invalid @enderror" placeholder="End Date" autocomplete="off" readonly>
     @error('leave_to')
         <div class="text-danger">{{ "* ".$message }}</div>
@@ -45,7 +45,7 @@
 <div class="form-group col-sm-12 col-md-12 col-xl-12">
     <label for="">Leave Details</label>
     <textarea name="details" rows="12" placeholder="Details About Leave" class="form-control @error('details') is-invalid @enderror">
-        {{ $leave_application->details ?? old('details') }}
+        {{ $leaveApplication->details ?? old('details') }}
     </textarea>
     @error('details')
         <div class="text-danger">{{ "* ".$message }}</div>
@@ -54,8 +54,8 @@
 
 <div class="form-group col-sm-6 col-md-4 col-xl-3">
     <label for="">Attachment: </label>
-    @if($leave_application->attachment)
-        <a href="{{ route('attachment.view', $leave_application->id) }}">{{ $leave_application->attachment }}</a>
+    @if($leaveApplication->attachment)
+        <a href="{{ route('attachment.view', $leaveApplication->id) }}">{{ $leaveApplication->attachment }}</a>
     @endif
     <input type="file" name="attachment" class="form-control-file" accept="application/pdf">
     @error('attachment')
@@ -63,7 +63,7 @@
     @enderror
 </div>
 
-<input type="hidden" name="leave_applied_days" id="total_ld" value="{{ $leave_application->id != '' ? $leave_application->leave_applied_days : '' }}">
+<input type="hidden" name="leave_applied_days" id="total_ld" value="{{ $leaveApplication->id != '' ? $leaveApplication->leave_applied_days : '' }}">
 
 @push('js')
     <script>

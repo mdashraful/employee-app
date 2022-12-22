@@ -1,11 +1,11 @@
 @extends('admin.layout.master')
 
 @section('header')
-    Edit :{{ $fiscal_year->name }}
+    Edit :{{ $fiscalYear->name }}
 @endsection
 
 @section('tagline')
-    Edit Fiscal_year
+    Edit Fiscal Year
 @endsection
 
 @section('content')
@@ -22,11 +22,11 @@
     <div class="card">
         <div class="card-header">
             <div class="card-title h5 ">
-                Edit Fiscal_year
+                Edit Fiscal Year
             </div>
         </div>
         <div class="card-body">
-            <form action="{{route('fiscal_year.update', $fiscal_year->id)}}" method="POST">
+            <form action="{{route('fiscal-year.update', $fiscalYear->id)}}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="row">

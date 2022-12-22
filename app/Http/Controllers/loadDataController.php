@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Company;
 use App\Models\Department;
 use App\Models\Designation;
-use App\Models\Fiscal_year;
+use App\Models\FiscalYear;
 
-class load_dataController extends Controller
+class LoadDataController extends Controller
 {
     public function loadData(Request $request)
     {

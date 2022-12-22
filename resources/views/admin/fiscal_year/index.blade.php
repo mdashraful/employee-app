@@ -51,18 +51,18 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse($fiscal_years as $fiscal_year)
+                @forelse($fiscalYears as $fiscalYear)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $fiscal_year->name }}</td>
-                        <td>{{ $fiscal_year->start_date }}</td>
-                        <td>{{ $fiscal_year->end_date }}</td>
+                        <td>{{ $fiscalYear->name }}</td>
+                        <td>{{ $fiscalYear->start_date }}</td>
+                        <td>{{ $fiscalYear->end_date }}</td>
                         <td class="text-center">
                             <button class="btn btn-sm btn-info"><i class="ti-eye"></i> View</button>
-                            <a href="{{ route('fiscal_year.edit', $fiscal_year->id) }}" class="btn btn-sm btn-secondary"><i class="ti-pencil"></i> Edit</a>
+                            <a href="{{ route('fiscal-year.edit', $fiscalYear->id) }}" class="btn btn-sm btn-secondary"><i class="ti-pencil"></i> Edit</a>
                             
                             <button class="btn btn-sm btn-danger delete_fy"><i class="ti-trash "></i> Delete</button>
-                            <form action="{{route('fiscal_year.destroy', $fiscal_year->id)}}" id="delete_form" method="POST">
+                            <form action="{{route('fiscal-year.destroy', $fiscalYear->id)}}" id="delete_form" method="POST">
                                 @method('delete')  
                                 @csrf   
                             </form>

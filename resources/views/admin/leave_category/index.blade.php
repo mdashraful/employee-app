@@ -51,18 +51,18 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse($leave_categories as $leave_categorie)
+                @forelse($leaveCategories as $leaveCategoy)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $leave_categorie->fiscal_year->name }}</td>
-                        <td>{{ $leave_categorie->name }}</td>
-                        <td>{{ $leave_categorie->leave_days }}</td>
+                        <td>{{ $leaveCategoy->fiscalYear->name }}</td>
+                        <td>{{ $leaveCategoy->name }}</td>
+                        <td>{{ $leaveCategoy->leave_days }}</td>
                         <td class="text-center">
                             <button class="btn btn-sm btn-info"><i class="ti-eye"></i> View</button>
-                            <a href="{{ route('leave_category.edit', $leave_categorie->id) }}" class="btn btn-sm btn-secondary"><i class="ti-pencil"></i> Edit</a>
+                            <a href="{{ route('leave-category.edit', $leaveCategoy->id) }}" class="btn btn-sm btn-secondary"><i class="ti-pencil"></i> Edit</a>
                             
                             <button class="btn btn-sm btn-danger delete_fy"><i class="ti-trash "></i> Delete</button>
-                            <form action="{{route('leave_category.destroy', $leave_categorie->id)}}" id="delete_form" method="POST">
+                            <form action="{{route('leave-category.destroy', $leaveCategoy->id)}}" id="delete_form" method="POST">
                                 @method('delete')  
                                 @csrf   
                             </form>
