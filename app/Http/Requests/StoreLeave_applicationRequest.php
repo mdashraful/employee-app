@@ -26,8 +26,8 @@ class StoreLeave_applicationRequest extends FormRequest
         return [
             'fiscal_year' => 'required',
             'leave_category' => 'required',
-            'leave_from' => 'required|date',
-            'leave_to' => 'required|date',
+            'leave_from' => 'required|date|before:leave_to',
+            'leave_to' => 'required|date|after:leave_from',
             'leave_applied_days' => 'required',
             'details' => 'required',
             'attachment' => 'nullable',

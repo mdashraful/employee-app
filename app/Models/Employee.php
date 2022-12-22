@@ -40,4 +40,9 @@ class Employee extends Model
     {
         return $this->belongsTo(Designation::class);
     }
+
+    public function getJoinDateAttribute($value)
+    {
+        return $this->attributes['join_date'] = getFormatedDate($value);
+    }
 }

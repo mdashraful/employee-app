@@ -83,7 +83,7 @@
 
 <div class="form-group col-sm-6 col-md-4 col-xl-3">
     <label for="">Join Date</label>
-    <input type="date" name="join_date" value="{{ $employee->join_date ?? old('join_date') }}" class="form-control @error('u_id') is-invalid @enderror" placeholder="Employee Unique ID">
+    <input type="text" id="join_date" name="join_date" value="{{ $employee->join_date ?? old('join_date') }}" class="form-control @error('u_id') is-invalid @enderror" placeholder="Employee Unique ID">
     @error('join_date')
         <div class="text-danger">{{ "* ".$message }}</div>
     @enderror
@@ -150,6 +150,12 @@
                         $("#designation").empty();
                     }     
                 });
+
+                $("#join_date").flatpickr({
+                    altInput: true,
+                    altFormat: "d/m/Y",
+                    dateFormat: "Y-m-d",
+                }); 
             });
         })(jQuery);
     </script>

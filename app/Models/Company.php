@@ -19,4 +19,7 @@ class Company extends Model
         'address',
     ];
 
+    public function getLaunchDateAttribute($value){
+        return $this->attributes['launch_date'] = getFormatedDate($value);
+    }
 }

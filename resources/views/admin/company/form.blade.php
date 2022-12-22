@@ -24,7 +24,7 @@
 
 <div class="form-group col-sm-6 col-md-4 col-xl-3">
     <label for="">Date launch</label>
-    <input type="date" name="launch_date" value="{{ $company->launch_date != '' ? $company->launch_date : old('launch_date') }}" class="form-control @error('launch_date') is-invalid @enderror" placeholder="Born Date">
+    <input type="text" id="launch_date" name="launch_date" value="{{ $company->launch_date != '' ? $company->launch_date : old('launch_date') }}" class="form-control @error('launch_date') is-invalid @enderror" placeholder="Born Date">
     @error('launch_date')
         <div class="text-danger">{{ "* ".$message }}</div>
     @enderror
@@ -53,3 +53,15 @@
         <div class="text-danger">{{ "* ".$message }}</div>
     @enderror
 </div>
+
+@push('js')
+    <script>
+        ;(function($){
+            $("#launch_date").flatpickr({
+                altInput: true,
+                altFormat: "d/m/Y",
+                dateFormat: "Y-m-d",
+            })    
+        })(jQuery);
+    </script>
+@endpush

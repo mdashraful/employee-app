@@ -9,6 +9,8 @@ use App\Http\Requests\StoreLeave_applicationRequest;
 use App\Http\Requests\UpdateLeave_applicationRequest;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
+use App\Http\Requests;
 
 class Leave_applicationController extends Controller
 {
@@ -62,7 +64,7 @@ class Leave_applicationController extends Controller
     public function store(StoreLeave_applicationRequest $request)
     {
         $validated = $request->validated();
-
+        dd($request->file('attachment'));
         if($request->file('attachment')){
             $path = public_path('upload/leave_attachments');
 
@@ -124,11 +126,23 @@ class Leave_applicationController extends Controller
      * @param  \App\Models\Leave_application  $leave_application
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateLeave_applicationRequest $request, Leave_application $leave_application)
+    public function update(Request $request, Leave_application $leave_application)
     {
-        $validated = $request->validated();
+        $request['leave_from'] = setFormatedDate($request->leave_from);
+        $request['leave_to'] = setFormatedDate($request->leave_to);
         
+        $validated = $request->validate([
+            'fiscal_year' => 'required',
+            'leave_category' => 'required',
+            'leave_from' => 'required|date|before:leave_to',
+            'leave_to' => 'required|date|after:leave_from',
+            'leave_applied_days' => 'required',
+            'details' => 'required',
+            'attachment' => 'nullable',
+        ]);
+        // dd($request->file('attachment'));
         if($request->file('attachment')){
+            dd($request->file('attachment'));
             $path = public_path('upload/leave_attachments');
 
             if(!File::isDirectory($path)){

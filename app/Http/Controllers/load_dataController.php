@@ -34,12 +34,4 @@ class load_dataController extends Controller
 
         return response()->json($str);
     }
-
-    public function loadDate(Request $request)
-    {
-        $id = $request->id;
-        $fiscal_year = Fiscal_year::select('start_date', 'end_date')->where('id', $id)->get();
-        
-        return response()->json($fiscal_year);
-    }
 }
