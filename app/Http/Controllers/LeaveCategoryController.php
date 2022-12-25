@@ -16,7 +16,7 @@ class LeaveCategoryController extends Controller
      */
     public function index()
     {
-        $leaveCategories = LeaveCategory::all();
+        $leaveCategories = LeaveCategory::with('fiscalYear')->get();
 
         return view('admin.leave_category.index', compact('leaveCategories'));
     }

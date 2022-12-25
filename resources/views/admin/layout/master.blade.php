@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="{{ asset('admin') }}/scss/custom.css">
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <!-- datatable -->
+    <link rel="stylesheet" href ="//cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
     @stack('css')
     <!-- end of global css -->
     <style>
@@ -59,7 +61,11 @@
     <script src="{{ asset('admin') }}/js/app.js" type="text/javascript"></script>
     <!-- <script src="https://code.jquery.com/jquery-3.6.1.slim.min.js"></script> -->
     
+    <!-- time -->    
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <!-- datatable -->
+    <script src="//cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     @stack('js')
     <!-- end of page level js -->
     <script>

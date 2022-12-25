@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\LeaveApplication;
 use App\Models\FiscalYear;
 use App\Models\LeaveCategory;
+use App\Models\Company;
 use App\Http\Requests\StoreLeaveApplicationRequest;
 use App\Http\Requests\UpdateLeaveApplicationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use PDF;
 
 class LeaveApplicationController extends Controller
 {
@@ -19,7 +21,7 @@ class LeaveApplicationController extends Controller
      */
     public function index()
     {
-        $leaveApplications = LeaveApplication::all();
+        $leaveApplications = LeaveApplication::with('fiscalYear','leaveCategory')->paginate(5);
 
         return view('admin.leave_application.index', compact('leaveApplications'));
     }
@@ -89,6 +91,18 @@ class LeaveApplicationController extends Controller
         $leaveApplication = LeaveApplication::find($id);
 
         return view('admin.leave_application.attachment_view', compact('leaveApplication'));
+    }
+
+    /**
+     * create leave application pdf 
+     */
+
+    public function createPdf($id)
+    {
+        $leaveApplication = LeaveApplication::find($id);
+        $company = Company::where('id', $leaveApplication->applied_by)->first();
+        $pdf = PDF::loadView('admin.leave_application.pdf', compact(['leaveApplication', 'company']));
+        return $pdf->stream('document.pdf');
     }
 
     /**

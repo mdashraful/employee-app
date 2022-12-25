@@ -26,8 +26,8 @@
 
 <div class="form-group col-sm-6 col-md-4 col-xl-3">
     <label for="">Leave From</label>
-    <input type="text" id="leave_from" name="leave_from" value="{{ $leaveApplication->leave_from != '' ? getFormatedDate($leaveApplication->leave_from) : old('leave_from') }}" 
-        class="form-control @error('leave_from') is-invalid @enderror" placeholder="Start Date" autocomplete="off" readonly>
+    <input type="text" id="leave_from" name="leave_from" value="{{ $leaveApplication->leave_from != '' ? getFormatedDate($leaveApplication->leave_from) : getFormatedDate(old('leave_from')) }}" 
+        class="form-control @error('leave_from') is-invalid @enderror" placeholder="Start Date" autocomplete="off">
     @error('leave_from')
         <div class="text-danger">{{ "* ".$message }}</div>
     @enderror
@@ -35,8 +35,8 @@
 
 <div class="form-group col-sm-6 col-md-4 col-xl-3">
     <label for="">Leave To</label>
-    <input type="text" id="leave_to" name="leave_to" value="{{ $leaveApplication->leave_to != '' ? getFormatedDate($leaveApplication->leave_to) : old('leave_to') }}" 
-        class="form-control @error('leave_to') is-invalid @enderror" placeholder="End Date" autocomplete="off" readonly>
+    <input type="text" id="leave_to" name="leave_to" value="{{ $leaveApplication->leave_to != '' ? getFormatedDate($leaveApplication->leave_to) : getFormatedDate(old('leave_to')) }}" 
+        class="form-control @error('leave_to') is-invalid @enderror" placeholder="End Date" autocomplete="off">
     @error('leave_to')
         <div class="text-danger">{{ "* ".$message }}</div>
     @enderror
@@ -63,38 +63,60 @@
     @enderror
 </div>
 
-<input type="hidden" name="leave_applied_days" id="total_ld" value="{{ $leaveApplication->id != '' ? $leaveApplication->leave_applied_days : '' }}">
+<input type="hidden" name="leave_applied_days" id="total_ld" value="{{ $leaveApplication->id != '' ? $leaveApplication->leave_applied_days : old('leave_applied_days') }}">
 
 @push('js')
     <script>
         ;(function($){
             $(document).ready(function(){
-                $("#fiscal_year").on('change', function(){
-                    var fiscal_year = $("#fiscal_year").val();
+                const leaveFromDf = "{{ $leaveApplication->id != '' ? $leaveApplication->leave_from : old('leave_from') }}";
+                const leaveToDf = "{{ $leaveApplication->id != '' ? $leaveApplication->leave_to : old('leave_to') }}";
+                
+                var leaveFrom = $("#leave_from").flatpickr({
+                    altInput: true,
+                    altFormat: "d/m/Y",
+                    dateFormat: "Y-m-d",
+                    defaultDate: leaveFromDf
+                });
+
+                var leaveTo = $("#leave_to").flatpickr({
+                    altInput: true,
+                    altFormat: "d/m/Y",
+                    dateFormat: "Y-m-d",
+                    defaultDate: leaveToDf
+                });
+
+                $("#fiscal_year").on('change', function(){   
+                    leaveFrom.clear();
+                    leaveTo.clear();
+
+                    let id = $(this).val();
+                    let startFiscalYear = $("#fiscal_year option[value = "+ id +"]").attr("start");
+                    let endFiscalYear = $("#fiscal_year option[value="+ id +"]").attr("end");
+ 
+                    leaveFrom.set('minDate', startFiscalYear);
+                    leaveFrom.set('maxDate', endFiscalYear);
+
+                    leaveTo.set('minDate', startFiscalYear);
+                    leaveTo.set('maxDate', endFiscalYear);
                     
-                    var startFiscalYear = $("#fiscal_year option[value= "+ fiscal_year +"]").attr('start');
-                    var endFiscalYear = $("#fiscal_year option[value=" + fiscal_year + "]").attr('end');
-                    
-                    $("#leave_from").flatpickr({
-                        altInput: true,
-                        altFormat: "d/m/Y",
-                        dateFormat: "Y-m-d",
-                        enable: [{
-                            from: startFiscalYear,
-                            to: endFiscalYear,
-                        }],
+                    $("#leave_from").on("change", function(){
+                        var startDate = $("#leave_from").val();
+
+                        leaveTo.set('minDate', startDate);
+                        leaveTo.set('maxDate', endFiscalYear);
                     });
-                    $("#leave_to").flatpickr({
-                        altInput: true,
-                        altFormat: "d/m/Y",
-                        dateFormat: "Y-m-d",
-                        enable: [{
-                            from: startFiscalYear,
-                            to: endFiscalYear,
-                        }],
+
+                    $("#leave_to").on("change", function(){
+                        var endDate = $("#leave_to").val();
+
+                        leaveFrom.set('minDate', startFiscalYear);
+                        leaveFrom.set('maxDate', endDate);
                     });
                 });
 
+                // $("#fiscal_year").trigger('change') ;
+                
                 $("#leave_from").on("change", function(){
                     var startDate = $("#leave_from").val();
                     var endDate = $("#leave_to").val();
@@ -130,4 +152,5 @@
         })(jQuery);
     </script>
 @endpush
+                    
 

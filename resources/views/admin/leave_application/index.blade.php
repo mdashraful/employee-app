@@ -40,7 +40,7 @@
         </div>
     </div>
     <div class="card-body">
-        <table class="table  bg-white table-sm striped">
+        <table id="datatable" class="table  bg-white table-sm striped">
             <thead>
                 <tr>
                     <th>SL</th>
@@ -61,15 +61,16 @@
                         <td>{{ $leaveApplication->applied_by }}</td>
                         <td>{{ $leaveApplication->fiscalYear->name }}</td>
                         <td>{{ $leaveApplication->leaveCategory->name }}</td>
-                        <td>{{ $leaveApplication->leave_from }}</td>
+                        <td>{{ getFormatedDate($leaveApplication->leave_from) }}</td>
                         <td class="text-center">{{ $leaveApplication->leave_applied_days }}</td>
-                        <td>{{ $leaveApplication->leave_to }}</td>
+                        <td>{{ getFormatedDate($leaveApplication->leave_to) }}</td>
                         <td class="text-center">
                             @if($leaveApplication->attachment)
                                 <a href="{{ route('attachment.view', $leaveApplication->id) }}">View</a>
                             @endif
                         </td>
                         <td class="text-center">
+                            <button class="btn btn-sm btn-primary" onclick="window.location='{{ route('leave-application.pdf', $leaveApplication->id) }}'"><i class="fa-thin fa-file-pdf"></i> PDF</button>
                             <button class="btn btn-sm btn-info"><i class="ti-eye"></i> View</button>
                             <a href="{{ route('leave-application.edit', $leaveApplication->id) }}" class="btn btn-sm btn-secondary"><i class="ti-pencil"></i> Edit</a>
                             
@@ -87,12 +88,14 @@
                 @endforelse
             </tbody>
         </table>
+
+        {{ $leaveApplications->links() }}
 @endsection
 
 @push('js')
     <script>
         ;(function($){
-            $(document).ready(function(){
+            $(document).ready(function(){  
                 $('.delete_la').on('click', function(){
                     if(confirm('Are you sure?')){
                         $(this).siblings('form').submit();

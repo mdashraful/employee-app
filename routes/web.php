@@ -46,6 +46,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('leave-application', LeaveApplicationController::class);
 
+    Route::get('leave-application/pdf/{id}', [LeaveApplicationController::class, 'createPdf'])->name('leave-application.pdf');
+
     Route::get('/attachement/{id}', [LeaveApplicationController::class, 'viewAttachment'])->name('attachment.view');
     
 });
